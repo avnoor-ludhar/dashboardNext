@@ -1,0 +1,57 @@
+LAYOUTS AND PAGES
+
+/app/page.tsx is the home route
+
+to create a new route you go into /app and then add another 
+folder and a new page.tsx file if you want that to be a nested route
+or route.tsx will be the only things that add to the file path
+
+COLLOCATION
+- just addign other component files at that route won't 
+be a new route unless we have another folder
+- example /ui /lib are colocated inside the /app folder 
+along with your routes
+
+THATS HOW YOU CREATE DIFFERENT PAGES IN NEXT.JS
+
+LAYOUT.TSX IN DASHBOARD
+
+DONT FORGET ABOUT THE CHILDREN PROP
+- it is all the elements that will be between the opening 
+and closing tag of the layout component and can be used here
+
+
+- the child will either be another page or a another layout
+it will first go into the page.tsx in our dashboard file if we are 
+at that endpoint and the child will be taht page componenet
+if we are at /dashboard/invoices it will have that page.tsx
+component as a child
+
+WHY? 
+- because this will do partial rendering only the new component
+will render instead of the layout being rerendered. PARTIAL RENDERING
+
+ROOT LAYOUT
+- any UI you add to the layout.tsx in the app folder will be 
+shared across all pages in the application
+- use root layout to modify your <html></html> and body tags
+- and add metaDATA
+
+NAVIGATING BETWEEN PAGES
+- use Link component to avoid full refresh
+- client-side navigation
+
+    WHY NO REFRESH? AUTOMATIC CODE-SPLITTING AND PREFETCHING
+    - Next.js automatically code splits your application by 
+    route segments. This is different from traditional React SPA
+    which would render the entire app on the initial load
+    - splitting code by routes means that pages become more isolated
+    - if a certain page throws an error, the rest of the application works
+    - HUGE: when we go on a page the <Link /> component automatically prefetches
+    the code for that page so when people click the link it is near-instant transition
+
+PATTERN: SHOWING ACTIVE LINKS
+- get users current path with usePathname() hook 
+- CLIENT COMPONENT: it allows us to use React hooks by Reacts
+- "use client" directive a the top of the file
+- can usePathname returns the path on the URL not the entire URL.
